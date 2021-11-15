@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useEffect,useContext} from "react"
+import "./App.css";
+import { Layout } from "antd";
+import { Header as Head } from "./Component/Header/header";
+import "antd/dist/antd.css";
+import { GetProductsApi } from "./Api/getProductsApi";
+import { GlobalContext } from './Context/globalState';
 
 function App() {
+  const {products, setProducts} = useContext(GlobalContext);
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+
+  async function getProducts() {
+    let response = await GetProductsApi();
+    if (response.status === 200) {
+      setProducts(response.data);
+    }
+  }
+
+  const { Footer, Sider, Content, Header } = Layout;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Layout>
+        <Header style={{ height: "100%" }}>
+          <Head />
+        </Header>
+        <Layout>
+          <Sider style={{ height: "900px" }} width={260}>
+            Sider
+          </Sider>
+          <Content>Content</Content>
+        </Layout>
+      </Layout>
     </div>
   );
 }
