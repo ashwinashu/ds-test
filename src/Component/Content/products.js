@@ -16,7 +16,7 @@ export const Products = () => {
                 hoverable
                 style={{ width: 240, height: 300 }}
                 cover={
-                  <img
+                  <Image
                     style={{ maxHeight: "200px" }}
                     src={`https://yumitup-node.herokuapp.com/products/download?fileId=${value.fileId}`}
                   />

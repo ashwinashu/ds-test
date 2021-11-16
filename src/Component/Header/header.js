@@ -16,7 +16,7 @@ export const Header = () => {
   const navigate = useNavigate();
   useEffect(() => {
     getCartCount();
-  }, [cartData]);
+  }, []);
 
   async function getCartCount() {
     let response = await GetCartDetailsApi();
@@ -91,7 +91,7 @@ export const Header = () => {
       </Col>
       <Col lg={4}>
         <Row style={{ marginLeft: "50px", cursor: "pointer" }}>
-          <Col lg={3} onClick={() => {navigate("/cart")}}>
+          <Col lg={4} onClick={() => {navigate("/cart")}}>
             <p style={{ color: "white" }}>Cart</p>
           </Col>
           <Col>
