@@ -7,7 +7,7 @@ import { UpdateCartDataApi } from "../../Api/updateCartDataApi";
 import { error, success } from "../../Utils/popup";
 
 export const Cart = () => {
-  const { cartData, setCartData, cartCount } = useContext(GlobalContext);
+  const { cartData, setCartData, cartCount,setCartCount } = useContext(GlobalContext);
   const [loader,setLoader] = useState(false)
   useEffect(() => {
     getCartData();
@@ -34,6 +34,7 @@ export const Cart = () => {
     let res = await UpdateCartDataApi(filteredArr);
     if (res.status === 200) {
       setCartData(res.data?.cartItems);
+      setCartCount(res.data?.cartItems.length)
       setLoader(false)
       success("Product Removed");
     } else {
